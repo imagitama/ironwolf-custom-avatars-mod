@@ -30,9 +30,11 @@ Inside each folder is `offset.txt` which lets you tweak how the head looks.
 
 5. In Unity import the FBX and ensure its scale is 1,1,1 and position and rotation is 0,0,0. Add materials as you like, then create a new `.prefab` file
 
-6. Create an [AssetBundle](https://docs.unity3d.com/6000.1/Documentation/Manual/AssetBundlesIntro.html) called `head` and add your prefab and all of its dependencies (like materials and textures)
+6. Either manually create an [AssetBundle](https://docs.unity3d.com/6000.1/Documentation/Manual/AssetBundlesIntro.html) called `head` and add your prefab and all of its dependencies (like materials and textures) or
 
-7. Drop into the `Avatars` folder in your game eg. `steamapps\common\IronWolf\Avatars\my_steam_username`
+   Drag the `Editor` folder into your Unity project and go to Tools -> IronWolf Head Tool and follow the steps to do it automatically
+
+7. Drop your `head` AssetBundle into the `Avatars\my_steam_username` folder in your game eg. `steamapps\common\IronWolf\Avatars\my_steam_username\head`
 
 ## Development
 

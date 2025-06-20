@@ -23,4 +23,10 @@
       <HintPath>E:\SteamLibrary\steamapps\common\IronWolf\IW_Data\Managed\IonizedBase.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Editor\**\*.cs" />
+    <Content Remove="Editor\**\*" />
+    <None Remove="Editor\**\*" />
+    <EmbeddedResource Remove="Editor\**\*" />
+  </ItemGroup>
 </Project>
