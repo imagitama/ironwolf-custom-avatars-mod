@@ -9,6 +9,7 @@ class AvatarOffset
 {
     public float scale = 1;
     public float height = 1;
+    public float forwards = 1;
 }
 
 public class AvatarPatch
@@ -229,15 +230,16 @@ public class AvatarPatch
 
                         AvatarOffset offset = LoadOffset(Path.GetDirectoryName(targetPath));
 
-                        float xPos = offset.height - 1f;
+                        float zPos = offset.height - 1f;
+                        float xPos = 1f - offset.forwards;
                         Vector3 newScale = Vector3.one * offset.scale;
                         
-                        newGameObject.transform.localPosition = new Vector3(xPos, 0, 0);
+                        newGameObject.transform.localPosition = new Vector3(xPos, 0, zPos);
                         newGameObject.transform.localRotation = Quaternion.Euler(0, -90f, 270f);
 
                         var appliedLocalScale = SetWorldScale(newGameObject.transform, newScale);
                         
-                        Debug.Log($"[CustomAvatar] Height {offset.height} => {xPos}, scale {offset.scale} => {newScale} => {appliedLocalScale}");
+                        Debug.Log($"[CustomAvatar] Height {offset.height} => {xPos}, forwards {offset.forwards} => {zPos}, scale {offset.scale} => {newScale} => {appliedLocalScale}");
 
                         if (__instance.isMe)
                         {
@@ -363,7 +365,7 @@ public class AvatarPatch
         if (!File.Exists(configPath)) {
             Debug.Log("[CustomAvatar] Offset file does not exist, creating with defaults...");
 
-            File.WriteAllText(configPath, "scale=1\nheight=1");
+            File.WriteAllText(configPath, "scale=1\nheight=1\nforwards=1");
             return offset;
         }
 
@@ -383,6 +385,7 @@ public class AvatarPatch
                 {
                     case "scale": offset.scale = value; break;
                     case "height": offset.height = value; break;
+                    case "forwards": offset.forwards = value; break;
                     default:
                         Debug.LogWarning($"[CustomAvatar] Unknown offset key '{key}'");
                         break;
